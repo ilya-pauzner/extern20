@@ -4,6 +4,7 @@ using namespace std;
 const int MEMORY = 90 * 1000 * 1000;
 const int OPENED_SIM = 25;
 
+
 void flush(vector<string>& vs, int& file_num) {
     ofstream fout(to_string(file_num));
     ++file_num;
