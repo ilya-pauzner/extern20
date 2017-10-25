@@ -24,6 +24,7 @@ int split() {
     int total_len = 0;
     vector<string> vs;
     string tmp;
+    ////
     while (getline(fin, tmp)) {
         if (tmp == "") {
             continue;
