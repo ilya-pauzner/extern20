@@ -47,7 +47,6 @@ void merge(int first, int last, int answername) {
     // Timer T("merge");
     typedef pair<string, int> ps;
     priority_queue<ps, vector<ps>, greater<ps>> merge_queue;
-    //multiset<pair<string, int> > merge_queue;
     vector<ifstream> files(static_cast<size_t>(last - first));
 
     for (int i = first; i < last; ++i) {
