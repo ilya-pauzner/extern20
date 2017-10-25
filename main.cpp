@@ -45,7 +45,9 @@ int split() {
 // files from ['first'; 'last') merge to 'answername'
 void merge(int first, int last, int answername) {
     // Timer T("merge");
-    multiset<pair<string, int> > merge_queue;
+    typedef pair<string, int> ps;
+    priority_queue<ps, vector<ps>, greater<ps>> merge_queue;
+    //multiset<pair<string, int> > merge_queue;
     vector<ifstream> files(static_cast<size_t>(last - first));
 
     for (int i = first; i < last; ++i) {
@@ -53,19 +55,19 @@ void merge(int first, int last, int answername) {
 
         string s;
         getline(files[i - first], s);
-        merge_queue.insert({s, i - first});
+        merge_queue.push(make_pair(s, i - first));
     }
     ofstream answer(to_string(answername));
 
     while (!merge_queue.empty()) {
-        auto pairr = *merge_queue.begin();
-        merge_queue.erase(merge_queue.begin());
+        auto pairr = merge_queue.top();
+        merge_queue.pop();
 
         answer << pairr.first << "\n";
 
         if (getline(files[pairr.second], pairr.first)) {
             if (pairr.first != "") {
-                merge_queue.insert(pairr);
+                merge_queue.push(pairr);
             }
         }
     }
